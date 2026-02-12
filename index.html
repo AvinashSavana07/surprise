@@ -1,6 +1,71 @@
 <!DOCTYPE html>
 <html>
-<body style="margin:0; background:black; display:flex; justify-content:center; align-items:center; height:100vh;">
-    <img src="chimp.jpg" style="max-width:100%; max-height:100%;">
+<head>
+    <title>System Loading...</title>
+    <style>
+        body {
+            margin: 0;
+            background: black;
+            color: lime;
+            font-family: monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        #loadingText {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        #progressBarContainer {
+            width: 300px;
+            height: 20px;
+            border: 2px solid lime;
+        }
+
+        #progressBar {
+            width: 0%;
+            height: 100%;
+            background: lime;
+        }
+
+        img {
+            display: none;
+            max-width: 100%;
+            max-height: 100vh;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loadingSection">
+        <div id="loadingText">Loading system files...</div>
+        <div id="progressBarContainer">
+            <div id="progressBar"></div>
+        </div>
+    </div>
+
+    <img id="prankImage" src="chimp.jpg">
+
+    <script>
+        let progress = 0;
+        let bar = document.getElementById("progressBar");
+
+        let interval = setInterval(function() {
+            progress += 2;
+            bar.style.width = progress + "%";
+
+            if (progress >= 100) {
+                clearInterval(interval);
+                document.getElementById("loadingSection").style.display = "none";
+                document.getElementById("prankImage").style.display = "block";
+                document.body.style.background = "black";
+            }
+        }, 60);
+    </script>
+
 </body>
 </html>
